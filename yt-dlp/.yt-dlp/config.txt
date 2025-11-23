@@ -1,0 +1,11 @@
+-t mp3
+
+--embed-thumbnail
+
+--embed-metadata
+
+--cookies-from-browser brave
+
+--download-archive ~/.yt-dlp/archive.txt
+
+-o ~/Music/YouTubeMusic/%(title)s.%(ext)s
