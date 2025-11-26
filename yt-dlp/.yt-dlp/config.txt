@@ -6,6 +6,6 @@
 
 --cookies-from-browser brave
 
---download-archive ~/.yt-dlp/archive.txt
+--download-archive ~/Music/YouTubeMusic/archive.txt
 
 -o ~/Music/YouTubeMusic/%(title)s.%(ext)s
