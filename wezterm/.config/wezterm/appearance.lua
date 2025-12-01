@@ -17,10 +17,14 @@ function M.apply_to_config(config)
     config.window_decorations = 'NONE'
     config.hide_tab_bar_if_only_one_tab = true
     config.window_padding = {
-        left = 10,
-        right = 10,
+        left = 0,
+        right = 0,
         top = 0,
         bottom = 0,
+    }
+    config.inactive_pane_hsb = {
+        saturation = 0.6,
+        brightness = 0.6,
     }
 
     config.cursor_blink_ease_in = 'EaseOut'
