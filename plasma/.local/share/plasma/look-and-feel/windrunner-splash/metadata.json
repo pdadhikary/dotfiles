@@ -1,0 +1,19 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel/Splash",
+    "KPlugin": {
+        "Authors": [
+            {
+				"Email": "deeptoadhikary@gmail.com",
+				"Name": "deepta"
+            }
+        ],
+        "Category": "",
+        "Description": "Windrunner Animated Splash Screen - Immortal Words [kde6]",
+        "Id": "windrunner-splash",
+		"License": "GPLv3",
+        "Name": "windrunner-splash",
+		"Website": "https://github.com/pdadhikary/dotfiles"
+    },
+    "Keywords": "Desktop;Workspace;Appearance;Look and Feel;Logout;Lock;Suspend;Shutdown;Hibernate;",
+    "X-Plasma-APIVersion": "2"
+}
