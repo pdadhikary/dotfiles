@@ -16,3 +16,7 @@ starship init fish | source
 
 # zoxide shell integration:
 zoxide init --cmd cd fish | source
+
+alias ls='eza'
+alias ll='eza -l'
+alias la='eza -la'
