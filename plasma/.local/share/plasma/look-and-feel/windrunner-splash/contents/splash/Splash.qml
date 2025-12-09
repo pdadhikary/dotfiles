@@ -39,7 +39,6 @@ Rectangle {
             }
         }
 
-
     }
 
     OpacityAnimator {
@@ -48,7 +47,7 @@ Rectangle {
         target: content
         from: 0
         to: 1
-        duration: 1000
+        duration: 100
         easing.type: Easing.InOutQuad
     }
 }
