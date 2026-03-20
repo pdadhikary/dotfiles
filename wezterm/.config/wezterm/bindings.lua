@@ -3,7 +3,7 @@ local act = wezterm.action
 
 local M = {}
 
-local leader = { key = 'Space', mods = 'CTRL' }
+local leader = { key = 'q', mods = 'ALT', timeout_milliseconds = 2000 }
 
 local mod = {
     SUPER = 'ALT',
@@ -35,12 +35,17 @@ local mouse_bindings = {
 local keys = {
     { key = 'F11', mods = 'NONE', action = act.ToggleFullScreen },
     { key = 'F12', mods = 'NONE', action = act.ShowDebugOverlay },
-    { key = '`', mods = mod.SUPER, action = act.ActivateCommandPalette },
-    { key = 't', mods = mod.SUPER, action = act.SpawnTab 'DefaultDomain' },
+    { key = '`', mods = mod.LEADER, action = act.ActivateCommandPalette },
+    { key = 't', mods = mod.LEADER, action = act.SpawnTab 'DefaultDomain' },
     {
-        key = 'w',
-        mods = mod.SUPER_REV,
-        action = act.CloseCurrentTab { confirm = false },
+        key = 'r',
+        mods = mod.LEADER,
+        action = wezterm.action.EmitEvent 'trigger-renametab',
+    },
+    {
+        key = 'x',
+        mods = mod.LEADER,
+        action = act.CloseCurrentTab { confirm = true },
     },
     {
         key = '[',
@@ -59,57 +64,66 @@ local keys = {
         action = act.MoveTabRelative(1),
     },
     {
-        key = [[\]],
-        mods = mod.SUPER,
+        key = 'v',
+        mods = mod.LEADER,
         action = act.SplitVertical { domain = 'CurrentPaneDomain' },
     },
     {
-        key = [[\]],
-        mods = mod.SUPER_REV,
+        key = 'h',
+        mods = mod.LEADER,
         action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
     {
         key = 'k',
-        mods = mod.SUPER_REV,
+        mods = mod.SUPER,
         action = act.ActivatePaneDirection 'Up',
     },
     {
         key = 'j',
-        mods = mod.SUPER_REV,
+        mods = mod.SUPER,
         action = act.ActivatePaneDirection 'Down',
     },
     {
         key = 'h',
-        mods = mod.SUPER_REV,
+        mods = mod.SUPER,
         action = act.ActivatePaneDirection 'Left',
     },
     {
         key = 'l',
-        mods = mod.SUPER_REV,
+        mods = mod.SUPER,
         action = act.ActivatePaneDirection 'Right',
     },
     {
-        key = 'w',
+        key = 'x',
         mods = mod.SUPER,
         action = act.CloseCurrentPane { confirm = false },
     },
     {
-        key = 'H',
-        mods = mod.LEADER,
+        key = 'h',
+        mods = mod.SUPER_REV,
         action = act.AdjustPaneSize { 'Left', 5 },
     },
     {
-        key = 'J',
-        mods = mod.LEADER,
+        key = 'j',
+        mods = mod.SUPER_REV,
         action = act.AdjustPaneSize { 'Down', 5 },
     },
-    { key = 'K', mods = mod.LEADER, action = act.AdjustPaneSize { 'Up', 5 } },
+    { key = 'k', mods = mod.SUPER_REV, action = act.AdjustPaneSize { 'Up', 5 } },
     {
-        key = 'L',
-        mods = mod.LEADER,
+        key = 'l',
+        mods = mod.SUPER_REV,
         action = act.AdjustPaneSize { 'Right', 5 },
     },
 }
+
+for i = 1, 9 do
+    -- leader + number to activate that tab
+    table.insert(keys, {
+        key = tostring(i),
+        mods = mod.SUPER,
+        action = wezterm.action.ActivateTab(i - 1),
+    })
+end
 
 function M.apply_to_config(config)
     config.keys = keys
