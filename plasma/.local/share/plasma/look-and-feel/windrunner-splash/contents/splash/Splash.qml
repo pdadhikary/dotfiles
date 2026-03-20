@@ -47,7 +47,7 @@ Rectangle {
         target: content
         from: 0
         to: 1
-        duration: 100
+        duration: 1000
         easing.type: Easing.InOutQuad
     }
 }
