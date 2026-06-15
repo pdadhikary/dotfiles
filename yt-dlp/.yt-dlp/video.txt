@@ -1,0 +1,10 @@
+-o "~/Downloads/%(title)s--%(id)s.%(ext)s"
+--format "vcodec=av01/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"
+--downloader aria2c
+--downloader-args "aria2c:'-c -x16 -s16 -k2M'"
+--ignore-errors
+--continue
+--geo-bypass
+--prefer-free-formats
+--no-warnings
+--console-title

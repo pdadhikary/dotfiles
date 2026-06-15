@@ -36,7 +36,7 @@ local keys = {
     { key = 'F11', mods = 'NONE', action = act.ToggleFullScreen },
     { key = 'F12', mods = 'NONE', action = act.ShowDebugOverlay },
     { key = '`', mods = mod.LEADER, action = act.ActivateCommandPalette },
-    { key = 't', mods = mod.LEADER, action = act.SpawnTab 'DefaultDomain' },
+    { key = 'c', mods = mod.LEADER, action = act.SpawnTab 'DefaultDomain' },
     {
         key = 'r',
         mods = mod.LEADER,
