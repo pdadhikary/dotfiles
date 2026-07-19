@@ -1,4 +1,4 @@
 require 'config.options'
-require 'config.keys'
+require 'config.mappings'
 require 'config.autocmd'
 require 'config.lazy'

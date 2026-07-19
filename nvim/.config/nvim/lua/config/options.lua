@@ -1,64 +1,61 @@
-local options = {
-    number = true,
-    relativenumber = true,
-    mouse = 'a',
-    showmode = false,
-    clipboard = 'unnamedplus',
-    background = 'dark',
-    breakindent = true,
-    undofile = true,
-    undodir = vim.fn.stdpath 'state' .. '/undodir',
-    ignorecase = true,
-    smartcase = true,
-    signcolumn = 'yes',
-    updatetime = 250,
-    timeoutlen = 300,
-    splitright = true,
-    splitbelow = true,
-    list = true,
-    listchars = { tab = '» ', trail = '·', nbsp = '␣' },
-    inccommand = 'split',
-    cursorline = true,
-    scrolloff = 10,
-    confirm = true,
-    guicursor = {
-        'n-v-c:block-blinkwait700-blinkon400-blinkoff250', -- Normal/Visual/Command: blinking block
-        'i-ci-ve:ver25', -- Insert/Command-line Insert/Visual-ex: steady vertical bar
-        'r-cr:hor20', -- Replace modes: steady horizontal bar
-        'o:hor50', -- Operator-pending: steady horizontal bar
-    },
-    hlsearch = false,
-    incsearch = true,
-    termguicolors = true,
-    expandtab = true,
-    autoindent = true,
-    smartindent = false,
-    cindent = false,
-    tabstop = 4,
-    shiftwidth = 4,
-}
-
-for k, v in pairs(options) do
-    vim.opt[k] = v
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
+vim.opt.rtp:prepend(lazypath)
 
-vim.opt.colorcolumn = '80,' .. (vim.o.textwidth > 0 and vim.o.textwidth or 80)
--- vim.cmd 'highlight OverLength ctermbg=red ctermfg=white guibg=#592929'
--- vim.cmd(
---     'match OverLength /\\%>'
---         .. (vim.o.textwidth > 0 and vim.o.textwidth or 80)
---         .. 'v.\\+/'
--- )
+vim.opt.breakindent = true
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath 'state' .. '/undodir'
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.signcolumn = "yes"
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 500
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.cursorline = true
+vim.opt.confirm = true
+vim.opt.guicursor = {
+    'n-v-c:block-blinkwait700-blinkon400-blinkoff250',
+    'i-ci-ve:ver25',
+    'r-cr:hor20',
+    'o:hor50',
+}
+vim.opt.termguicolors = true
+
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.wrap = false
+vim.opt.clipboard = "unnamedplus"
+vim.opt.scrolloff = 10
+vim.opt.mouse = "a"
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+
+vim.opt.textwidth = 80
+vim.opt.colorcolumn = '+1'
 
 vim.opt.isfname:append '@-@'
 
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
 vim.g.loaded_netrw = 1
