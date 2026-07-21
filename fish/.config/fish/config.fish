@@ -63,5 +63,3 @@ set -gx GAUSS_SCRDIR /home/deepta/g16/Scratch
 # opencode
 fish_add_path /home/deepta/.opencode/bin
 fish_add_path /home/deepta/orca
-
-load_nvm >/dev/stderr
