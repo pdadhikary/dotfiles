@@ -14,7 +14,30 @@ return {
     {
         'nvim-mini/mini.hipatterns',
         version = false,
-        opts = {},
+        opts = function()
+            local hipatterns = require 'mini.hipatterns'
+            return {
+                highlighters = {
+                    fixme = {
+                        pattern = '%f[%w]()FIXME()%f[%W]',
+                        group = 'MiniHipatternsFixme',
+                    },
+                    hack = {
+                        pattern = '%f[%w]()HACK()%f[%W]',
+                        group = 'MiniHipatternsHack',
+                    },
+                    todo = {
+                        pattern = '%f[%w]()TODO()%f[%W]',
+                        group = 'MiniHipatternsTodo',
+                    },
+                    note = {
+                        pattern = '%f[%w]()NOTE()%f[%W]',
+                        group = 'MiniHipatternsNote',
+                    },
+                    hex_color = hipatterns.gen_highlighter.hex_color(),
+                },
+            }
+        end,
     },
     {
         'nvim-lualine/lualine.nvim',
@@ -290,6 +313,13 @@ return {
                 desc = 'Diagnostics',
             },
             {
+                '<leader>sD',
+                function()
+                    Snacks.picker.diagnostics_buffer()
+                end,
+                desc = 'Buffer Diagnostics',
+            },
+            {
                 '<leader>sk',
                 function()
                     Snacks.picker.keymaps()
@@ -360,6 +390,13 @@ return {
                     Snacks.picker.lsp_workspace_symbols()
                 end,
                 desc = 'LSP Workspace Symbols',
+            },
+            {
+                '<leader>sH',
+                function()
+                    Snacks.picker.highlights()
+                end,
+                desc = 'Highlights',
             },
             {
                 ']]',

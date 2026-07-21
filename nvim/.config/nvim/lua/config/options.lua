@@ -69,3 +69,16 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.g.undotree_DiffCommand = 'diff'
+
+vim.diagnostic.config {
+    -- Show inline messages
+    virtual_text = true,
+    -- Show signs in the gutter
+    signs = true,
+    -- Underline problematic text
+    underline = true,
+    -- Don't update diagnostics while typing
+    update_in_insert = false,
+    -- Sort diagnostics by severity
+    severity_sort = true,
+}

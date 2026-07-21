@@ -17,16 +17,22 @@ vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'In-place join lines' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selection down' })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selection up' })
 vim.keymap.set(
+    'v',
+    '<C-d>',
+    'yP',
+    { desc = 'Duplicate current selection and paste below' }
+)
+vim.keymap.set(
     'n',
     '<C-d>',
     'mzyyp`zj',
-    { desc = 'Duplicate current line and paste below' }
+    { desc = 'Duplicate current line and paste below; normal model' }
 )
 vim.keymap.set(
     'i',
     '<C-d>',
     '<Esc>mzyyp`za',
-    { desc = 'Duplicate current line and paste below' }
+    { desc = 'Duplicate current line and paste below; insert mode' }
 )
 
 vim.keymap.set('n', 'd', '"_d', { desc = 'Delete without replacing clipboard' })
@@ -105,6 +111,43 @@ vim.keymap.set(
     { desc = 'Delete all buffers' }
 )
 
-vim.keymap.set({ 'n', 'v' }, '<leader>cf', function()
+vim.keymap.set({ 'n', 'v' }, '<leader>ff', function()
     require('conform').format { async = true, lsp_fallback = true }
 end, { desc = 'Format buffer' })
+
+vim.keymap.set('v', '<', '<gv', { desc = 'Unindent and keep selection' })
+vim.keymap.set('v', '>', '>gv', { desc = 'Indent and keep selection' })
+
+vim.keymap.set(
+    'n',
+    'n',
+    'nzzzv',
+    { desc = 'Next search result; cursor centered' }
+)
+vim.keymap.set(
+    'n',
+    'N',
+    'Nzzzv',
+    { desc = 'Previous search result; cursor centered' }
+)
+
+vim.keymap.set('i', '[', '[]<Esc>i', { desc = 'Autopair square braces' })
+
+vim.keymap.set(
+    'n',
+    '<leader>X',
+    '<Cmd>!chmod +x %<CR>',
+    { desc = 'Make file executable' }
+)
+
+vim.keymap.set(
+    'n',
+    '<leader>re',
+    '<Cmd>restart<CR>',
+    { desc = 'Restart NeoVim' }
+)
+
+vim.keymap.set('n', '<leader>u', function()
+    vim.cmd.packadd 'nvim.undotree'
+    require('undotree').open()
+end, { desc = 'Toggle undotree' })
