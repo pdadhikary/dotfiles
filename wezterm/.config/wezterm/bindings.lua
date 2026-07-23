@@ -36,11 +36,16 @@ local keys = {
     { key = 'F11', mods = 'NONE', action = act.ToggleFullScreen },
     { key = 'F12', mods = 'NONE', action = act.ShowDebugOverlay },
     { key = '`', mods = mod.LEADER, action = act.ActivateCommandPalette },
-    { key = 'c', mods = mod.LEADER, action = act.SpawnTab 'DefaultDomain' },
+    { key = 'n', mods = mod.LEADER, action = act.SpawnTab 'DefaultDomain' },
     {
         key = 'r',
         mods = mod.LEADER,
         action = wezterm.action.EmitEvent 'trigger-renametab',
+    },
+    {
+        key = 'f',
+        mods = mod.LEADER,
+        action = act.TogglePaneZoomState,
     },
     {
         key = 'x',
@@ -73,47 +78,47 @@ local keys = {
         mods = mod.LEADER,
         action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
-    {
-        key = 'k',
-        mods = mod.SUPER,
-        action = act.ActivatePaneDirection 'Up',
-    },
-    {
-        key = 'j',
-        mods = mod.SUPER,
-        action = act.ActivatePaneDirection 'Down',
-    },
-    {
-        key = 'h',
-        mods = mod.SUPER,
-        action = act.ActivatePaneDirection 'Left',
-    },
-    {
-        key = 'l',
-        mods = mod.SUPER,
-        action = act.ActivatePaneDirection 'Right',
-    },
+    -- {
+    --     key = 'k',
+    --     mods = mod.SUPER,
+    --     action = act.ActivatePaneDirection 'Up',
+    -- },
+    -- {
+    --     key = 'j',
+    --     mods = mod.SUPER,
+    --     action = act.ActivatePaneDirection 'Down',
+    -- },
+    -- {
+    --     key = 'h',
+    --     mods = mod.SUPER,
+    --     action = act.ActivatePaneDirection 'Left',
+    -- },
+    -- {
+    --     key = 'l',
+    --     mods = mod.SUPER,
+    --     action = act.ActivatePaneDirection 'Right',
+    -- },
     {
         key = 'x',
         mods = mod.SUPER,
         action = act.CloseCurrentPane { confirm = false },
     },
-    {
-        key = 'h',
-        mods = mod.SUPER_REV,
-        action = act.AdjustPaneSize { 'Left', 5 },
-    },
-    {
-        key = 'j',
-        mods = mod.SUPER_REV,
-        action = act.AdjustPaneSize { 'Down', 5 },
-    },
-    { key = 'k', mods = mod.SUPER_REV, action = act.AdjustPaneSize { 'Up', 5 } },
-    {
-        key = 'l',
-        mods = mod.SUPER_REV,
-        action = act.AdjustPaneSize { 'Right', 5 },
-    },
+    -- {
+    --     key = 'h',
+    --     mods = mod.SUPER_REV,
+    --     action = act.AdjustPaneSize { 'Left', 5 },
+    -- },
+    -- {
+    --     key = 'j',
+    --     mods = mod.SUPER_REV,
+    --     action = act.AdjustPaneSize { 'Down', 5 },
+    -- },
+    -- { key = 'k', mods = mod.SUPER_REV, action = act.AdjustPaneSize { 'Up', 5 } },
+    -- {
+    --     key = 'l',
+    --     mods = mod.SUPER_REV,
+    --     action = act.AdjustPaneSize { 'Right', 5 },
+    -- },
 }
 
 for i = 1, 9 do

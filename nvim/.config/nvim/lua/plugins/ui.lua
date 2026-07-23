@@ -168,6 +168,12 @@ return {
                             action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
                         },
                         {
+                            icon = ' ',
+                            key = 'w',
+                            desc = 'Wezterm Config',
+                            action = ":lua Snacks.dashboard.pick('files', {cwd = '~/.config/wezterm'})"
+                        },
+                        {
                             icon = ' ',
                             key = 's',
                             desc = 'Restore Session',
