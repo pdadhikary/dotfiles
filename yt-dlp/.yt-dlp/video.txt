@@ -1,3 +1,4 @@
+# Videos
 -o "~/Downloads/%(title)s--%(id)s.%(ext)s"
 --format "vcodec=av01/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"
 --downloader aria2c
@@ -8,3 +9,13 @@
 --prefer-free-formats
 --no-warnings
 --console-title
+
+
+# Music
+-t mp3
+--embed-thumbnail
+--embed-metadata
+--cookies-from-browser brave
+--download-archive ~/Music/YouTubeMusic/archive.txt
+-o ~/Music/YouTubeMusic/%(title)s.%(ext)s
+
