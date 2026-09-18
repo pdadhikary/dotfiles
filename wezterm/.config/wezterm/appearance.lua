@@ -8,7 +8,7 @@ function M.apply_to_config(config)
     config.animation_fps = 165
     config.prefer_egl = true
 
-    config.font = wezterm.font 'JetBrains Mono'
+    config.font = wezterm.font 'JetBrainsMono Nerd Font'
     config.font_size = 12
     config.color_scheme = 'Rosé Pine Moon (base16)'
     config.window_background_opacity = 1.0

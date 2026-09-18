@@ -1,25 +1,28 @@
-vim.keymap.set(
-    { 'n', 'v' },
-    '<C-k>',
-    '20kzz',
-    { desc = 'Jump up (cursor centered)' }
-)
-vim.keymap.set(
-    { 'n', 'v' },
-    '<C-j>',
-    '20jzz',
-    { desc = 'Jump down (cursor centered)' }
-)
+vim.keymap.set({ 'n', 'x' }, '<C-j>', function()
+    vim.cmd.normal({ '20jzz', bang = true })
+end)
 
-vim.keymap.set('n', '<C-a>', 'gg0vG$', { desc = 'Select all' })
-vim.keymap.set('i', '<C-a>', '<Esc>gg0vG$', { desc = 'Select all' })
+vim.keymap.set({ 'n', 'x' }, '<C-k>', function()
+    vim.cmd.normal({ '20kzz', bang = true })
+end)
+
+vim.keymap.set('n', '<C-a>', function()
+    vim.cmd.normal({ 'ggVG', bang = true })
+end, { desc = 'Select all' })
+
+vim.keymap.set('i', '<C-a>', function()
+    vim.cmd.stopinsert()
+    vim.cmd.normal({ 'ggVG', bang = true })
+end, { desc = 'Select all' })
+
 vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'In-place join lines' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selection down' })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selection up' })
+
 vim.keymap.set(
     'v',
     '<C-d>',
-    'yP',
+    'yPgv',
     { desc = 'Duplicate current selection and paste below' }
 )
 vim.keymap.set(
@@ -131,7 +134,6 @@ vim.keymap.set(
     { desc = 'Previous search result; cursor centered' }
 )
 
-vim.keymap.set('i', '[', '[]<Esc>i', { desc = 'Autopair square braces' })
 
 vim.keymap.set(
     'n',
@@ -151,3 +153,91 @@ vim.keymap.set('n', '<leader>u', function()
     vim.cmd.packadd 'nvim.undotree'
     require('undotree').open()
 end, { desc = 'Toggle undotree' })
+
+vim.keymap.set('n', '<leader>ls', function()
+    require('fzf-lua').buffers()
+end, { desc = 'List buffers' })
+
+vim.keymap.set('n', '<leader>sf', function()
+    require('fzf-lua').files()
+end, { desc = 'List buffers' })
+
+vim.keymap.set('n', '<leader>sc', function()
+    require('fzf-lua').files { cwd = vim.fn.stdpath 'config' }
+end, { desc = 'List neovim config files' })
+
+vim.keymap.set('n', '<leader>sr', function()
+    require('fzf-lua').oldfiles()
+end, { desc = 'List recent files' })
+
+vim.keymap.set('n', '<leader>sg', function()
+    require('fzf-lua').grep()
+end, { desc = 'Grep search' })
+
+vim.keymap.set('n', '<leader>sa', function()
+    require('fzf-lua').autocmds()
+end, { desc = 'List autocommands' })
+
+vim.keymap.set('n', '<leader>sm', function()
+    require('fzf-lua').marks()
+end, { desc = 'List marks' })
+
+vim.keymap.set('n', '<leader>sz', function()
+    require('fzf-lua').zoxide()
+end, { desc = 'List recent directories' })
+
+vim.keymap.set('n', '<leader>sd', function()
+    require('fzf-lua').diagnostics_workspace()
+end, { desc = 'List workspace diagnostics' })
+
+vim.keymap.set('n', '<leader>sD', function()
+    require('fzf-lua').diagnostics_document()
+end, { desc = 'List document diagnostics' })
+
+vim.keymap.set('n', '<leader>sk', function()
+    require('fzf-lua').keymaps()
+end, { desc = 'List keymaps' })
+
+vim.keymap.set('n', 'gd', function()
+    require('fzf-lua').lsp_definitions()
+end, { desc = 'List definitions/Goto definition' })
+
+vim.keymap.set('n', 'gD', function()
+    require('fzf-lua').lsp_declarations()
+end, { desc = 'List declarations/Goto declaration' })
+
+vim.keymap.set('n', 'gr', function()
+    require('fzf-lua').lsp_references()
+end, { desc = 'List references/Goto reference' })
+
+vim.keymap.set('n', 'gI', function()
+    require('fzf-lua').lsp_implementations()
+end, { desc = 'List Implementations/Goto implementation' })
+
+vim.keymap.set('n', 'gy', function()
+    require('fzf-lua').lsp_typedefs()
+end, { desc = 'List type definitions' })
+
+vim.keymap.set('n', 'gai', function()
+    require('fzf-lua').lsp_incoming_calls()
+end, { desc = 'List incoming calls' })
+
+vim.keymap.set('n', 'gao', function()
+    require('fzf-lua').lsp_outgoing_calls()
+end, { desc = 'List outgoing calls' })
+
+vim.keymap.set('n', '<leader>ss', function()
+    require('fzf-lua').lsp_document_symbols()
+end, { desc = 'List document symbols' })
+
+vim.keymap.set('n', '<leader>sS', function()
+    require('fzf-lua').lsp_workspace_symbols()
+end, { desc = 'List workspace symbols' })
+
+vim.keymap.set('n', '<leader>sH', function()
+    require('fzf-lua').highlights()
+end, { desc = 'List highlight groups' })
+
+vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Rename symbol' })
+
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file", silent = true })

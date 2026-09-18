@@ -12,7 +12,7 @@ return {
             ensure_installed = {
                 'lua_ls',
                 'clangd',
-                'basedpyright',
+                'pyrefly',
                 'vtsls',
                 'ruff',
                 'stylua',
@@ -23,12 +23,19 @@ return {
     {
         'neovim/nvim-lspconfig',
         config = function()
-            -- Per-server config via the new native API.
-            -- These merge into what mason-lspconfig auto-enables; you don't call .setup() yourself anymore.
+            local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+            -- Apply to all LSP servers
+            vim.lsp.config('*', {
+                capabilities = capabilities,
+            })
+
             vim.lsp.config('lua_ls', {
                 settings = {
                     Lua = {
-                        diagnostics = { globals = { 'vim' } },
+                        diagnostics = {
+                            globals = { 'vim' },
+                        },
                     },
                 },
             })
@@ -46,7 +53,7 @@ return {
 
             vim.lsp.config('ruff', {
                 cmd = { 'ruff', 'server' },
-                on_attach = function(client, _)
+                on_attach = function(client)
                     client.server_capabilities.hoverProvider = false
                 end,
             })
