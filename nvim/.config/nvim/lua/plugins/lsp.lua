@@ -13,7 +13,7 @@ return {
                 'lua_ls',
                 'clangd',
                 'pyrefly',
-                'vtsls',
+                -- 'vtsls',
                 'ruff',
                 'stylua',
             },
