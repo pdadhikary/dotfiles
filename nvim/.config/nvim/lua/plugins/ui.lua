@@ -3,7 +3,11 @@ return {
         'folke/noice.nvim',
         event = 'VeryLazy',
         opts = {
-            -- add any options here
+            views = {
+                notify = {
+                    timeout = 10000, -- 10 seconds
+                },
+            },
         },
         dependencies = {
             'MunifTanjim/nui.nvim',
@@ -19,9 +23,25 @@ return {
     {
         'nvim-mini/mini.files',
         version = false,
-        opts = {},
+        config = function()
+            require('mini.files').setup {
+                content = {
+                    filter = function(fs_entry)
+                        local ignored = {
+                            ['.git'] = true,
+                            ['node_modules'] = true,
+                            ['__pycache__'] = true,
+                            ['.venv'] = true,
+                            ['.serena'] = true,
+                            ['.dagster_home'] = true,
+                        }
+
+                        return not ignored[fs_entry.name]
+                    end,
+                },
+            }
+        end,
     },
-    { 'nvim-mini/mini.notify', version = false, opts = {} },
     { 'nvim-mini/mini.indentscope', version = false, opts = {} },
     {
         'nvim-mini/mini.hipatterns',
@@ -131,6 +151,7 @@ return {
             statuscolumn = { enabled = true },
             words = { enabled = true },
             lazygit = { enabled = true },
+            notifier = { enabled = true, timeout = 10000 },
         },
         keys = {
             {
