@@ -1,0 +1,52 @@
+theme = dark:Rose Pine Moon,light:Rose Pine Dawn
+
+# Ported from wezterm/.config/wezterm/bindings.lua
+# Wezterm leader (ALT+q, 2000ms) -> Ghostty key sequences (no timeout).
+# Wezterm SUPER = ALT, SUPER_REV = ALT|CTRL.
+
+# Mouse: right-click copies selection if present, otherwise pastes
+right-click-action = copy-or-paste
+
+# F11 fullscreen / F12 inspector (Wezterm debug overlay equivalent)
+keybind = f11=toggle_fullscreen
+keybind = f12=inspector:toggle
+
+# Leader (ALT+q) sequences
+keybind = alt+q>backquote=toggle_command_palette
+keybind = alt+q>n=new_tab
+keybind = alt+q>r=prompt_tab_title
+keybind = alt+q>f=toggle_split_zoom
+keybind = alt+q>x=close_tab
+keybind = alt+q>v=new_split:down
+keybind = alt+q>h=new_split:right
+
+# Tab navigation and reordering
+keybind = alt+[=previous_tab
+keybind = alt+]=next_tab
+keybind = alt+ctrl+[=move_tab:-1
+keybind = alt+ctrl+]=move_tab:1
+
+# Close current pane/split
+keybind = alt+x=close_surface
+
+# Alt+number -> goto tab
+keybind = alt+1=goto_tab:1
+keybind = alt+2=goto_tab:2
+keybind = alt+3=goto_tab:3
+keybind = alt+4=goto_tab:4
+keybind = alt+5=goto_tab:5
+keybind = alt+6=goto_tab:6
+keybind = alt+7=goto_tab:7
+keybind = alt+8=goto_tab:8
+keybind = alt+9=goto_tab:9
+
+# Smart-splits equivalents: performable: passes ALT+hjkl through to
+# nvim (<A-h/j/k/l>) when no terminal split exists in that direction
+keybind = performable:alt+h=goto_split:left
+keybind = performable:alt+j=goto_split:down
+keybind = performable:alt+k=goto_split:up
+keybind = performable:alt+l=goto_split:right
+keybind = performable:alt+ctrl+h=resize_split:left,5
+keybind = performable:alt+ctrl+j=resize_split:down,5
+keybind = performable:alt+ctrl+k=resize_split:up,5
+keybind = performable:alt+ctrl+l=resize_split:right,5
