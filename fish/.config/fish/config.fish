@@ -1,5 +1,15 @@
 source /usr/share/cachyos-fish-config/cachyos-config.fish
 
+# auto-attach a zellij session per project directory (ghostty only, so
+# alacritty/ttys are left alone); skipped when already inside zellij
+if status is-interactive; and not set -q ZELLIJ; and test "$TERM_PROGRAM" = ghostty
+    zellij attach --create (basename $PWD | string replace -a '.' '-')
+end
+
+fish_vi_key_bindings
+
+starship init fish | source
+
 function fish_greeting
     set user (whoami)
     set host (hostname)
@@ -44,8 +54,6 @@ function fish_greeting
     echo ""
 end
 
-starship init fish | source
-
 zoxide init --cmd cd fish | source
 
 alias ls='eza -al --color=always --group-directories-first --icons=always'
@@ -53,6 +61,8 @@ alias la='eza -a --color=always --group-directories-first --icons=always'
 alias ll='eza -l --color=always --group-directories-first --icons=always'
 alias lt='eza -aT --color=always --group-directories-first --icons=always'
 alias l.="eza -a | grep -e '^\.'"
+alias nv="nvim"
+alias urn="uv run nvim"
 
 set -gx GV_DIR /home/deepta/gv
 
@@ -63,3 +73,5 @@ set -gx GAUSS_SCRDIR /home/deepta/g16/Scratch
 # opencode
 fish_add_path /home/deepta/.opencode/bin
 fish_add_path /home/deepta/orca
+
+fish_add_path /home/deepta/.spicetify
