@@ -31,6 +31,7 @@ return {
                             ['.git'] = true,
                             ['node_modules'] = true,
                             ['__pycache__'] = true,
+                            ['.pytest_cache'] = true,
                             ['.venv'] = true,
                             ['.serena'] = true,
                             ['.dagster_home'] = true,
@@ -75,6 +76,8 @@ return {
         'nvim-lualine/lualine.nvim',
         opts = {
             sections = {
+                lualine_a = { 'mode' },
+                lualine_b = { 'branch', 'diff' },
                 lualine_x = {
                     {
                         require('noice').api.status.command.get,

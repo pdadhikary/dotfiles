@@ -1,6 +1,14 @@
 return {
     'mrjones2014/smart-splits.nvim',
-    opts = {},
+    dependencies = {
+        {
+            'smart-splits-nvim/backend-zellij-lua',
+            main = 'smart-splits-backend-zellij-lua',
+        },
+    },
+    opts = {
+        mux = { backend = 'smart-splits-backend-zellij-lua' },
+    },
     keys = {
         {
             '<A-h>',

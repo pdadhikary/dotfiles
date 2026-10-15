@@ -1,0 +1,15 @@
+themes {
+    rose-pine-dawn {
+        fg "#575279"
+        bg "#faf4ed"
+        red "#b4637a"
+        green "#286983"
+        yellow "#ea9d34"
+        blue "#56949f"
+        magenta "#907aa9"
+        orange "#ea9d34"
+        cyan "#d7827e"
+        black "#f2e9e1"
+        white "#797593"
+    }
+}

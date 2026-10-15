@@ -1,0 +1,138 @@
+// Zellij owns tabs/panes/splits; ghostty is a thin host (tab bar hidden).
+// Keybinds ported from wezterm/.config/wezterm/bindings.lua:
+//   leader = alt+q (zellij tab mode acts as the leader state; Esc/Enter cancels)
+//   SUPER = alt, SUPER_REV = ctrl+alt
+
+theme_dark "rose-pine-moon"
+theme_light "rose-pine-dawn"
+
+default_layout "default"
+default_shell "fish"
+
+// wezterm had no pane borders
+pane_frames false
+
+// wayland clipboard; wezterm copied on select
+copy_command "wl-copy"
+copy_on_select true
+
+// resurrect sessions on reattach
+session_serialization true
+serialize_pane_viewport true
+scrollback_lines_to_serialize 10000
+
+show_release_notes false
+show_startup_tips false
+
+// nvim <-> zellij pane navigation (smart-splits replacement, same author chain).
+// move_mod/resize_mod match the nvim <A-h>/<A-C-h> binds from
+// nvim/.config/nvim/lua/plugins/smart-split.lua.
+// When nvim is focused: keys are forwarded into nvim; otherwise zellij
+// moves/resizes its own panes.
+//
+// Wezterm parity:
+//   alt+q   -> leader (enters tab mode; wezterm leader keys n/r/x/1-9 already
+//              match zellij's tab-mode defaults; v/h/f/` added below)
+//   alt+[ ] -> previous/next tab (wezterm SUPER)
+//   ctrl+alt+[ ] -> move tab left/right (wezterm SUPER_REV)
+//   alt+x   -> close pane (wezterm SUPER x)
+//   alt+1-9 -> goto tab (wezterm SUPER number)
+keybinds {
+    shared_except "locked" {
+        bind "Alt q" { SwitchToMode "tab"; }
+        bind "Alt [" { GoToPreviousTab; }
+        bind "Alt ]" { GoToNextTab; }
+        bind "Ctrl Alt [" { MoveTab "Left"; }
+        bind "Ctrl Alt ]" { MoveTab "Right"; }
+        bind "Alt x" { CloseFocus; }
+        bind "Alt 1" { GoToTab 1; }
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+        bind "Alt 6" { GoToTab 6; }
+        bind "Alt 7" { GoToTab 7; }
+        bind "Alt 8" { GoToTab 8; }
+        bind "Alt 9" { GoToTab 9; }
+        bind "Alt h" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "left";
+                move_mod "alt";
+                resize_mod "alt+ctrl";
+            };
+        }
+        bind "Alt j" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "down";
+                move_mod "alt";
+                resize_mod "alt+ctrl";
+            };
+        }
+        bind "Alt k" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "up";
+                move_mod "alt";
+                resize_mod "alt+ctrl";
+            };
+        }
+        bind "Alt l" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "right";
+                move_mod "alt";
+                resize_mod "alt+ctrl";
+            };
+        }
+        bind "Ctrl Alt h" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "resize";
+                payload "left";
+                move_mod "alt";
+                resize_mod "alt+ctrl";
+            };
+        }
+        bind "Ctrl Alt j" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "resize";
+                payload "down";
+                move_mod "alt";
+                resize_mod "alt+ctrl";
+            };
+        }
+        bind "Ctrl Alt k" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "resize";
+                payload "up";
+                move_mod "alt";
+                resize_mod "alt+ctrl";
+            };
+        }
+        bind "Ctrl Alt l" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "resize";
+                payload "right";
+                move_mod "alt";
+                resize_mod "alt+ctrl";
+            };
+        }
+    }
+    // wezterm leader+key actions (after alt+q); tab mode defaults already
+    // cover n (new tab), r (rename), x (close tab), 1-9 (goto tab)
+    tab {
+        bind "Alt q" { SwitchToMode "Normal"; }
+        bind "v" { NewPane "Down"; SwitchToMode "Normal"; }
+        bind "h" { NewPane "Right"; SwitchToMode "Normal"; }
+        bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+        // wezterm command palette -> zellij session manager (closest analog)
+        bind "`" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Normal";
+        }
+    }
+}

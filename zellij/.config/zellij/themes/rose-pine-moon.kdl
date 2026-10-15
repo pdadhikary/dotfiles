@@ -1,0 +1,15 @@
+themes {
+    rose-pine-moon {
+        fg "#e0def4"
+        bg "#232136"
+        red "#eb6f92"
+        green "#31748f"
+        yellow "#f6c177"
+        blue "#9ccfd8"
+        magenta "#c4a7e7"
+        orange "#f6c177"
+        cyan "#ebbcba"
+        black "#393552"
+        white "#908caa"
+    }
+}
