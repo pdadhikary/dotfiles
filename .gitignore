@@ -1,1 +1,10 @@
 .serena/
+
+# secrets
+.env
+.env.*
+*.pem
+*.key
+
+# machine-specific fish state (auto-rewritten; may hold universal vars/secrets)
+fish_variables
