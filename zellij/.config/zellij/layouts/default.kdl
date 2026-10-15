@@ -1,31 +1,7 @@
 // Bottom status bar via zjstatus, replacing the bar.wezterm look:
 // numbered tabs "1: title", mode indicator, session, git branch, time.
-// Swap layouts are redefined here because overriding default_tab_template
-// disables zellij's built-in ones.
 
 layout {
-    swap_tiled_layout name="vertical" {
-        tab max_panes=5 {
-            pane split_direction="vertical" {
-                pane
-                pane { children; }
-            }
-        }
-        tab max_panes=8 {
-            pane split_direction="vertical" {
-                pane { children; }
-                pane { pane; pane; pane; pane; }
-            }
-        }
-        tab max_panes=12 {
-            pane split_direction="vertical" {
-                pane { children; }
-                pane { pane; pane; pane; pane; }
-                pane { pane; pane; pane; pane; }
-            }
-        }
-    }
-
     default_tab_template {
         children
         pane size=1 borderless=true {

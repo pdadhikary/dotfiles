@@ -24,4 +24,4 @@ keybind = alt+7=unbind
 keybind = alt+8=unbind
 keybind = alt+9=unbind
 
-maximized = true
+maximize = true

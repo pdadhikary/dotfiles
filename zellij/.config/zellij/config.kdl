@@ -16,10 +16,10 @@ pane_frames false
 copy_command "wl-copy"
 copy_on_select true
 
-// resurrect sessions on reattach
-session_serialization true
-serialize_pane_viewport true
-scrollback_lines_to_serialize 10000
+// fresh session every launch: closing the terminal ends the session, and no
+// stale state is resurrected
+on_force_close "quit"
+session_serialization false
 
 show_release_notes false
 show_startup_tips false
